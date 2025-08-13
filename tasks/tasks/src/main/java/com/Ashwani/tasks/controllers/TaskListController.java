@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(path = "/task-lists")
+@RequestMapping(path = "/api/task-lists")
 @RequiredArgsConstructor
 public class TaskListController {
     private final TaskListService taskListService;

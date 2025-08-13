@@ -234,7 +234,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
     createTask: async (taskListId, task) => {
       const response = await axios.post<Task>(
         `/api/task-lists/${taskListId}/tasks`,
-        task,
+        {
+          ...task,
+          taskListId, // 👈 explicitly include this field
+        },
         jsonHeaders
       );
       dispatch({
@@ -242,6 +245,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
         payload: { taskListId, task: response.data },
       });
     },
+
     updateTask: async (taskListId, taskId, task) => {
       const response = await axios.put<Task>(
         `/api/task-lists/${taskListId}/tasks/${taskId}`,
